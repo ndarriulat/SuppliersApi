@@ -1,5 +1,7 @@
-\SupplierApi\bin\
-\SupplierApi\obj\
-\.vs\
 /.vs
 /SupplierApi/obj
+/SupplierApi/bin
+/SupplierApi.Data/bin/Debug/net6.0
+/SupplierApi.Data/obj
+/SupplierApi.Service/bin/Debug/net6.0
+/SupplierApi.Service/obj
