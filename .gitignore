@@ -1,3 +1,5 @@
 \SupplierApi\bin\
 \SupplierApi\obj\
 \.vs\
+/.vs
+/SupplierApi/obj
