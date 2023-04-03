@@ -9,16 +9,13 @@ namespace SupplierApi.Controllers
     [ApiController]
     public class ProductController : Controller
     {
-        private readonly SupplierApiContext _context;
-        private readonly ProductService _productService;
+        private readonly IProductService _productService;
 
-        public ProductController(SupplierApiContext context, ProductService productService)
+        public ProductController(SupplierApiContext context, IProductService productService)
         {
-            _context = context;
             _productService = productService;
         }
 
-        // GET: ProductController
         [Route("/Product/Index")]
         [HttpGet]
         public async Task<IEnumerable<Product>> Index()
@@ -26,35 +23,30 @@ namespace SupplierApi.Controllers
             return await _productService.GetProducts();
         }
 
-        // GET: ProductController/Details/5
-        [Route("/Details")]
+        [Route("/GetById")]
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Supplier == null)
+            var product = await _productService.GetProduct(id);
+
+            if (product != null)
+            {
+                return Json(product);
+            }
+            else
             {
                 return NotFound();
             }
-
-            var supplier = await _context.Product
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (supplier == null)
-            {
-                return NotFound();
-            }
-
-            return Json(supplier);
         }
 
-        // GET: ProductController/Create
         [Route("/Create")]
         [HttpPost]
         public async Task<ActionResult> Create(string name, int price, int supplierId)
         {
-            await _context.AddAsync(new Product(name, price, supplierId));
-            await _context.SaveChangesAsync();
+            await _productService.Create(name, price, supplierId);
             return Ok();
         }
+
 
         //// POST: ProductController/Create
         //[HttpPost]

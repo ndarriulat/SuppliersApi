@@ -16,16 +16,13 @@ namespace SupplierApi.Controllers
     [Route("[controller]")]
     public class SuppliersController : Controller
     {
-        private readonly SupplierApiContext _context;
-        private readonly SupplierService _supplierService;
+        private readonly ISupplierService _supplierService;
 
-        public SuppliersController(SupplierApiContext context, SupplierService supplierService)
+        public SuppliersController(SupplierApiContext context, ISupplierService supplierService)
         {
             _supplierService = supplierService;
-            _context = context;
         }
 
-        // GET: Suppliers
         [Route("/Suppliers/Index")]
         [HttpGet]
         public async Task<IEnumerable<Supplier>> Index()
@@ -33,24 +30,21 @@ namespace SupplierApi.Controllers
             return await _supplierService.GetSuppliers();
         }
 
-        //GET: Suppliers/Details/5
+        [Route("/Suppliers/GetById")]
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Supplier == null)
+            var supplier = await _supplierService.GetSupplier(id);
+            if (supplier != null)
+            {
+                return Json(supplier);
+            }
+            else
             {
                 return NotFound();
             }
-
-            var supplier = await _context.Supplier
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (supplier == null)
-            {
-                return NotFound();
-            }
-
-            return Json(supplier);
         }
+
 
         //// GET: Suppliers/Create
         //public IActionResult Create()
