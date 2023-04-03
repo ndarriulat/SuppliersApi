@@ -1,7 +1,7 @@
 # SuppliersApi
 Simple .NET Core project with some simple CRUD operations and persistency using EF. 
 
-The api is meant for a shop that has several providers and needs to register their products with their correspondent prices.
+The api is meant for a shop that works with several providers and needs to register its products with their correspondent prices.
 
 ## TODOs
 This are the most urgent next steps for this project:
