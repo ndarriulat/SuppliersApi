@@ -1,38 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SupplierApi.Data;
+using SupplierApi.Repository;
 
 namespace SupplierApi.Service
 {
     public class SupplierService : ISupplierService
     {
-        private readonly SupplierApiContext _context;
+        private readonly ISupplierRepository _supplierRepository;
 
-        public SupplierService(SupplierApiContext context)
+        public SupplierService(ISupplierRepository supplierRepository)
         {
-            _context = context;
+            _supplierRepository = supplierRepository;
         }
 
         public async Task<IEnumerable<Supplier>> GetSuppliers()
         {
-            return await _context.Supplier.ToListAsync();
+            return await _supplierRepository.GetSuppliers();
         }
 
         public async Task<Supplier> GetSupplier(int? id)
         {
-            if (id == null || _context.Supplier == null)
-            {
-                return null;
-            }
-
-            var supplier = await _context.Supplier
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (supplier == null)
-            {
-                return null;
-            }
-
-            return supplier;
+            return await _supplierRepository.GetSupplier(id);
         }
     }
 }

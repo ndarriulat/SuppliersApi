@@ -5,3 +5,7 @@
 /SupplierApi.Data/obj
 /SupplierApi.Service/bin/Debug/net6.0
 /SupplierApi.Service/obj
+/SupplierApi.Repository/obj
+/SupplierApi.Tests/obj
+/SupplierApi.Tests/bin/Debug/net6.0
+/SupplierApi.Repository/bin/Debug/net6.0

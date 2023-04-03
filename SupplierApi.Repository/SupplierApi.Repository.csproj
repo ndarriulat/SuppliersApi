@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SupplierApi.Data\SupplierApi.Data.csproj" />
-    <ProjectReference Include="..\SupplierApi.Repository\SupplierApi.Repository.csproj" />
   </ItemGroup>
 
 </Project>

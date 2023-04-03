@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SupplierApi.Data;
+using SupplierApi.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,40 +11,26 @@ namespace SupplierApi.Service
 {
     public class ProductService : IProductService
     {
-        private readonly SupplierApiContext _context;
+        private readonly IProductRepository _productRepository;
 
-        public ProductService(SupplierApiContext context)
+        public ProductService(IProductRepository productRepository)
         {
-            _context = context;
+            _productRepository = productRepository;
         }
 
         public async Task<IEnumerable<Product>> GetProducts()
         {
-            return await _context.Product.ToListAsync();
+            return await _productRepository.GetProducts();
         }
 
         public async Task<Product> GetProduct(int? id)
         {
-            if (id == null || _context.Product == null)
-            {
-                return null;
-            }
-
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (product == null)
-            {
-                return null;
-            }
-
-            return product;
+            return await _productRepository.GetProduct(id);
         }
 
         public async Task Create(string name, int price, int supplierId)
         {
-            await _context.AddAsync(new Product(name, price, supplierId));
-            await _context.SaveChangesAsync();
+            await _productRepository.Create(name, price, supplierId);  
         }
     }
 }
