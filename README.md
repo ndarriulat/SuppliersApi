@@ -5,6 +5,6 @@ The api is meant for a shop that works with several providers and needs to regis
 
 ## TODOs
 This are the most urgent next steps for this project:
-- Unit testing, taking the advantage of having dependency injection
+- Unit testing, taking advantage of having dependency injection
 - Repository classes, which would decouple the Services classes from the DB
-- Add more basic features: ordering a new product, updating a product price, displaying all products from a provider
+- Add more basic features: ordering a new product, updating a product price, displaying all products from a provider, etc.
