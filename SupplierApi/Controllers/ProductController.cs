@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SupplierApi.Data;
+using SupplierApi.Service;
 
 namespace SupplierApi.Controllers
 {
@@ -9,10 +10,12 @@ namespace SupplierApi.Controllers
     public class ProductController : Controller
     {
         private readonly SupplierApiContext _context;
+        private readonly ProductService _productService;
 
-        public ProductController(SupplierApiContext context)
+        public ProductController(SupplierApiContext context, ProductService productService)
         {
             _context = context;
+            _productService = productService;
         }
 
         // GET: ProductController
@@ -20,7 +23,7 @@ namespace SupplierApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<Product>> Index()
         {
-            return await _context.Product.ToListAsync();
+            return await _productService.GetProducts();
         }
 
         // GET: ProductController/Details/5

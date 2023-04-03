@@ -15,6 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<SupplierService, SupplierService>();
+builder.Services.AddScoped<ProductService, ProductService>();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
