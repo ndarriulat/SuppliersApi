@@ -14,7 +14,7 @@ namespace SupplierApi.Repository
         public async Task Create(string name, int price, int supplierId)
         {
             await _context.AddAsync(new Product(name, price, supplierId));
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); 
         }
 
         public async Task<Product> GetProduct(int? id)

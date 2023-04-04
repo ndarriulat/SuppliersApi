@@ -30,7 +30,15 @@ namespace SupplierApi.Service
 
         public async Task Create(string name, int price, int supplierId)
         {
-            await _productRepository.Create(name, price, supplierId);  
+            //if (ProductNameNotExist(name, supplierId))
+            //{
+                await _productRepository.Create(name, price, supplierId);
+            //}
         }
+
+        //private bool ProductNameNotExist(string name, int supplierId)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
