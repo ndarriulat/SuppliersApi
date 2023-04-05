@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SupplierApi.Repository\SupplierApi.Repository.csproj" />
+    <ProjectReference Include="..\SupplierApi.Service\SupplierApi.Service.csproj" />
   </ItemGroup>
 
 </Project>

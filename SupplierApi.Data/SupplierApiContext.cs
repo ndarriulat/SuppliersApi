@@ -14,6 +14,11 @@ namespace SupplierApi.Data
         {
         }
 
+        public SupplierApiContext()
+        {
+            
+        }
+
         public DbSet<Supplier> Supplier { get; set; } = default!;
         public DbSet<Product> Product{ get; set; } = default!;
 
